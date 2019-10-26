@@ -1,22 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import { createStore } from 'redux';
+import { Provider } from "react-redux";
+import reducers from './reducers';
+import Main from './Main'
+
 import "./app.scss";
 
-function App() {
-  return (<div>app</div>);
-}
+const store = createStore(reducers);
 
-function Home() {
-  return <div>home</div>;
-}
+
 
 ReactDOM.render(
-  <Router>
-    <div>
-        <Route exact path="/" component={App} />
-        <Route path="/home" component={Home} />
-     </div>
-  </Router>,
+  <Provider store={store}>
+    <Main />
+  </Provider>,
   document.getElementById("app")
 );
+
+
